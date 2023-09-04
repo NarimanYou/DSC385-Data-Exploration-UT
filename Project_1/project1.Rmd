@@ -1,0 +1,55 @@
+---
+title: "Project 1"
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+library(ggplot2)
+opts_chunk$set(fig.align="center", fig.height=4, fig.width=5.5)
+```
+
+**This project is due on the deadline posted on edX. Please submit a .pdf file of your output and upload a .zip file containing your .Rmd file. Do NOT include your name or EID in your filenames.**
+
+
+**Part 1:** Demonstrate basic command of Markdown by creating a bulleted list with three items, a numbered list with three items, and a sentence that has one word in bold and one word in italics.
+
+- Item 1
+- Item 2
+- Item 3
+
+1. Numbered Item 1
+2. Numbered Item 2
+3. Numbered Item 3
+
+This is a **bold** word and this is an *italic* word.
+
+
+**Part 2:** The `mtcars` dataset contains information on car design and performance in 1974:
+
+```{r}
+mtcars
+```
+
+Use ggplot to make a line plot of the fuel economy of a car, measured in miles/gallon (column `mpg`), versus its weight (column `wt`).
+
+```{r}
+
+library(ggplot2)
+
+
+line_plot <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_line() +
+  labs(x = "Weight", y = "Miles/Gallon", title = "Fuel Economy vs. Weight")
+print(line_plot)
+```
+
+Now make a scatter plot (using `geom_point()`) of the horse power of a car (`hp`) versus its weight, and color points by its fuel economy.
+
+```{r}
+
+scatter_plot <- ggplot(mtcars, aes(x = wt, y = hp, color = mpg)) +
+  geom_point() +
+  labs(x = "Weight", y = "Horsepower", title = "Horsepower vs. Weight (Colored by Fuel Economy)")
+
+print(scatter_plot)
+```
