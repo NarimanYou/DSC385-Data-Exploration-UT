@@ -1,0 +1,55 @@
+---
+title: "Homework 1"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r global_options, include=FALSE}
+library(knitr)
+library(ggplot2)
+opts_chunk$set(fig.align="center", fig.height=4, fig.width=5.5)
+```
+
+**This homework is due on the deadline posted on edX. Please submit a .pdf file of your output and upload a .zip file containing your .Rmd file. Do NOT include your name or EID in your filenames.**
+
+In this homework you will be working with the `chickwts` dataset built into R. This data set contains weight measurements of chicks fed on different food sources to assess their effectiveness on growth rate.
+
+```{r}
+head(chickwts)
+```
+
+**Problem 1:** Use ggplot to make a histogram of the `weight` column. Manually choose appropriate values for `binwidth` and `center`. Explain your choice of values in 2-3 sentences.
+
+```{r}
+library(ggplot2)
+
+# Create the histogram
+ggplot(chickwts, aes(x = weight)) +
+  geom_histogram(binwidth = 20, center = 100) +
+  labs(title = "Histogram of Chicks' Weight",
+       x = "Weight",
+       y = "Frequency") +
+  theme_minimal()
+
+```
+
+*I chose a binwidth of 20 and a center of 100 based on the distribution of the data. These values provide a clear representation of the weight distribution of the chicks in the Dataset. Adjusting these values may be necessary depending on the specific insights you want to gain from the histogram..*
+
+
+**Problem 2:** Modify the plot from Problem 1 to show one panel per feed. Hint: Use `facet_wrap()`.
+
+```{r}
+library(ggplot2)
+
+# Create the histogram with facet_wrap
+ggplot(chickwts, aes(x = weight)) +
+  geom_histogram(binwidth = 20, center = 100) +
+  labs(title = "Histogram of Chicks' Weight",
+       x = "Weight",
+       y = "Frequency") +
+  facet_wrap(~ feed, ncol = 3) +
+  theme_minimal()
+
+```
+
